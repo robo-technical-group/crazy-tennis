@@ -418,6 +418,7 @@ function updateGame () {
                 launchBall(value)
             }
         }
+        // Once a ball enters a dead space, allow it to leave the screen so that it can be automatically destroyed.
         if (value.x <= BALL_DEAD_SPACE || value.x >= scene.screenWidth() - BALL_DEAD_SPACE) {
             value.setFlag(SpriteFlag.StayInScreen, false)
             value.setFlag(SpriteFlag.BounceOnWall, false)
@@ -441,8 +442,10 @@ function updateGame () {
         startNewBall()
     }
 }
+// When a ball leaves the screen, it scores a point for one of the players.
 sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
     if (sprite.x < BALL_DEAD_SPACE) {
+        music.wawawawaa.play()
         info.player2.changeScoreBy(1)
         setPlayerSpeed(player1, INIT_PLAYER_SPEED)
         if (numPlayers == 1) {
@@ -451,10 +454,12 @@ sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
     } else {
         info.player1.changeScoreBy(1)
         if (numPlayers == 2) {
+            music.wawawawaa.play()
             setPlayerSpeed(player2, INIT_PLAYER_SPEED)
+        } else {
+            music.powerUp.play()
         }
     }
-    music.wawawawaa.play()
     ballsRemaining = sprites.allOfKind(SpriteKind.Projectile)
     if (ballsRemaining.length == 0) {
         startNewBall()
