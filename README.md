@@ -1,4 +1,4 @@
-> Open this page at [https://robo-technical-group.github.io/blocks-template/](https://robo-technical-group.github.io/blocks-template/)
+> Open this page at [https://robo-technical-group.github.io/crazy-tennis/](https://robo-technical-group.github.io/crazy-tennis/)
 
 ## Use this extension
 
